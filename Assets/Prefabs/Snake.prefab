@@ -149,5 +149,5 @@ MonoBehaviour:
   snakeBodyPrefab: {fileID: 3744274421036289045, guid: ad6a674395664da49aabf84c5ea53cd3, type: 3}
   speed: 20
   speedMultiplier: 1
-  stepSize: 2
-  initialSize: 0
+  stepSize: 1
+  initialSize: 4
