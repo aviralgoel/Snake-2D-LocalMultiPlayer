@@ -9,10 +9,8 @@ public class PlayerController : MonoBehaviour
     [Header("Move Settings")]
     private Vector2 _direction = Vector2.right;
     public PlayerStats snake = new PlayerStats();
+    public float moveTimeDelta = 0;
 
-    
-    
-    
     public int stepSize = 2;
     //public int initialSize = 2;
     private float nextUpdate;
@@ -20,7 +18,8 @@ public class PlayerController : MonoBehaviour
     InputActions inputActions;
     bool WPressed, APressed, SPressed, DPressed;
     private List<Transform> snakeBodySegments = new List<Transform>();
-    
+    public float multi;
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -37,37 +36,49 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        GetInput();
-       
-    }
-    
-    private void FixedUpdate()
-    {
         if (_direction != Vector2.zero)
         {
             snakeDirectionVector = _direction;
         }
-        UpdateSnakeBodyPosition();
-        // Checks if  current time less than the future time stamp we are allowed to move, if yes, don't move, wait...
-        SnakeMove();
-
-    }
-
-    private void SnakeMove()
-    {
-        if (Time.time < nextUpdate)
+        GetInput();
+        if(moveTimeDelta > 0)
         {
-            return;
+            moveTimeDelta -= Time.fixedDeltaTime;
         }
-        // if current time is more then the future time stamp we are allowed to move, then quickly move and calculate the next future time stamp
         else
         {
+            UpdateSnakeBodyPosition();
+            // Checks if  current time less than the future time stamp we are allowed to move, if yes, don't move, wait...
+            SnakeMove();
+            moveTimeDelta = snake.MoveSpeed;
+        }
+       
+    }
+    
+    /*private void FixedUpdate()
+    {
+        
+       *//* UpdateSnakeBodyPosition();
+        // Checks if  current time less than the future time stamp we are allowed to move, if yes, don't move, wait...
+        SnakeMove();
+*//*
+    }
+*/
+    private void SnakeMove()
+    {
+       /* if (Time.time < nextUpdate)
+        {
+            return;
+        }*/
+        // if current time is more then the future time stamp we are allowed to move, then quickly move and calculate the next future time stamp
+        //else
+        //{
             transform.position = new Vector3(Mathf.Round(transform.position.x) + _direction.x * stepSize, Mathf.Round(transform.position.y) + stepSize * _direction.y, 0f);
             // next future time stamp = current time + 1/(defaultSpeed * Difficulty)
-            nextUpdate = Time.time + (1f / (snake.Speed * snake.SpeedMultiplier));
+            //nextUpdate = Time.time + (1f / (10f * multi));
             // if speed or difficulty is higher, then denominator bigger, then 1/D is very small number, so time stamps are closer
             // hence faster movement
-        }
+        //}
     }
 
     // simple for loop that moves the snake body segment where the previous in list segment was
@@ -157,7 +168,7 @@ public class PlayerController : MonoBehaviour
         // Call to destroy all the snakebody segments game Objects.
         // Remove all transform references from the snake body segment list, then
         SnakeDeGrow(snakeBodySegments.Count);
-        
+        snakeBodySegments.Clear();
         //  add Head transform back.
         snakeBodySegments.Add(transform);
 

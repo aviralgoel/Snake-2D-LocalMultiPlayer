@@ -6,14 +6,12 @@ public class PlayerStats
 
     [SerializeField] private bool isImmune;
     [SerializeField] private int initialSize;
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float speedMultiplier = 1f;
+    [SerializeField] private float movespeed = 1f;
     [SerializeField] private int score = 0;
     [SerializeField] private float scoreBoostMultiplier = 1f;
 
     // getters and setters
-    public float Speed { get => speed; set => speed = value; }
-    public float SpeedMultiplier { get => speedMultiplier; set => speedMultiplier = value; }
+    public float MoveSpeed { get => movespeed; set => movespeed = value; }
     public float ScoreBoostMultiplier { get => scoreBoostMultiplier; set => scoreBoostMultiplier = value; }
     public int Score { get => score; }
 

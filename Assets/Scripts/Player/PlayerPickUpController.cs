@@ -13,11 +13,12 @@ public class PlayerPickUpController : MonoBehaviour
     public float speedMultiplier = 2f;
     public int massGainerScore = 1;
     public int massLoserScore = 1;
+    [Range(0.5f, 1.5f)]
+    public float moveSpeed;
 
     private float shieldTimeDelta;
     private float scoreBoostTimeDelta;
     private float speedUpTimeDelta;
-    
     
 
     private void Awake()
@@ -46,7 +47,7 @@ public class PlayerPickUpController : MonoBehaviour
         else
         {
             // back to default condition
-            snake.SpeedMultiplier = 1f;
+            snake.MoveSpeed = 1f;
         }
 
     }
@@ -69,7 +70,8 @@ public class PlayerPickUpController : MonoBehaviour
         else if (collision.CompareTag("SpeedUp"))
         {
             // Increase Snake Speed Difficulty
-            snake.SpeedMultiplier = speedMultiplier;
+            snake.MoveSpeed = moveSpeed;
+            speedUpTimeDelta = speedUpTime;
            
         }
         else if(collision.CompareTag("Shield"))
