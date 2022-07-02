@@ -265,6 +265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 47509095, guid: b8d26fec5833dfd419d7634ead483c83, type: 3}
+      propertyPath: shieldTime
+      value: 25.12
+      objectReference: {fileID: 0}
     - target: {fileID: 2029173768132443464, guid: b8d26fec5833dfd419d7634ead483c83, type: 3}
       propertyPath: m_RootOrder
       value: 2
