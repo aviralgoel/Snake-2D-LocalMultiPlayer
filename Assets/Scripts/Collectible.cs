@@ -8,9 +8,6 @@ public class Collectible : MonoBehaviour
     {   
         RandomPosition();
     }
-    private void Update()
-    {   
-    }
     private void RandomPosition()
     {
         Bounds gridBound = this.gridArea.bounds; // cal

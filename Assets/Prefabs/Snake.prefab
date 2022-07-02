@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2029173768132443470}
   - component: {fileID: 2029173768132443469}
   - component: {fileID: 6645205076210211264}
+  - component: {fileID: 47509095}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Player
@@ -150,4 +151,17 @@ MonoBehaviour:
   speed: 20
   speedMultiplier: 1
   stepSize: 1
-  initialSize: 4
+--- !u!114 &47509095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029173768132443468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfe66d8c6a611f43bb7bd199ad4d969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentsPerMassGainer: 2
+  segmentsPerMassLoser: 2

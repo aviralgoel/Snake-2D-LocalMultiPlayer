@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 127547161}
   m_Layer: 0
   m_Name: MassGainer
-  m_TagString: MassGainer
+  m_TagString: Collectibles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridArea: {fileID: 0}
+  isCollected: 0

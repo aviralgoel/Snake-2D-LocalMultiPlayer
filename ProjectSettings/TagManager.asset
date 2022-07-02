@@ -6,6 +6,11 @@ TagManager:
   tags:
   - MassGainer
   - Walls
+  - Collectibles
+  - Shield
+  - ScoreBoost
+  - SpeedUp
+  - MassLoser
   layers:
   - Default
   - TransparentFX
