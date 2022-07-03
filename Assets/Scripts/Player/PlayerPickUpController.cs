@@ -82,13 +82,17 @@ public class PlayerPickUpController : MonoBehaviour
         else if(collision.CompareTag("ScoreBoost"))
         {
             // Increase Score Multiplier x2
+            Debug.Log("Score Boost Picked");
             snake.ScoreBoostMultiplier = scoreBoostMultiplier;
+            scoreBoostTimeDelta = scoreBoostTime;
         }
         // if player collides with itself and does not have immunity
         else if(collision.CompareTag("Player") && !snake.getIsImmune())
-        {   
+        {
+            Debug.Log("Player collided with itself");
             // Reset the game
             controller.ResetState();
+
             
         }
     }

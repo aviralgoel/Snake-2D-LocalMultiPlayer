@@ -148,9 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeBodyPrefab: {fileID: 3744274421036289045, guid: ad6a674395664da49aabf84c5ea53cd3, type: 3}
-  speed: 20
-  speedMultiplier: 1
+  snake:
+    isImmune: 1
+    initialSize: 4
+    movespeed: 1
+    score: 0
+    scoreBoostMultiplier: 1
+  moveTimeDelta: 0
   stepSize: 1
+  multi: 1
 --- !u!114 &47509095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +171,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentsPerMassGainer: 2
   segmentsPerMassLoser: 2
+  shieldTime: 3
+  scoreBoostTime: 3
+  speedUpTime: 3
+  scoreBoostMultiplier: 2
+  speedMultiplier: 5
+  massGainerScore: 1
+  massLoserScore: 1
+  moveSpeed: 0.501
