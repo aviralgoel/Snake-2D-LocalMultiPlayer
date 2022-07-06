@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Prefabs")]
@@ -19,6 +18,8 @@ public class PlayerController : MonoBehaviour
     bool WPressed, APressed, SPressed, DPressed;
     private List<Transform> snakeBodySegments = new List<Transform>();
     public float multi;
+    public bool gamePaused;
+    public GameMenuManager gameMenu;
 
     private void Awake()
     {
@@ -35,50 +36,35 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (_direction != Vector2.zero)
+    {   
+        if(!gamePaused)
         {
-            snakeDirectionVector = _direction;
+            if (_direction != Vector2.zero)
+            {
+                snakeDirectionVector = _direction;
+            }
+            GetInput();
+            if (moveTimeDelta > 0)
+            {
+                moveTimeDelta -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                UpdateSnakeBodyPosition();
+                // Checks if  current time less than the future time stamp we are allowed to move, if yes, don't move, wait...
+                SnakeMove();
+                moveTimeDelta = snake.MoveSpeed;
+            }
         }
-        GetInput();
-        if(moveTimeDelta > 0)
-        {
-            moveTimeDelta -= Time.fixedDeltaTime;
-        }
-        else
-        {
-            UpdateSnakeBodyPosition();
-            // Checks if  current time less than the future time stamp we are allowed to move, if yes, don't move, wait...
-            SnakeMove();
-            moveTimeDelta = snake.MoveSpeed;
-        }
+
        
     }
     
-    /*private void FixedUpdate()
-    {
-        
-       *//* UpdateSnakeBodyPosition();
-        // Checks if  current time less than the future time stamp we are allowed to move, if yes, don't move, wait...
-        SnakeMove();
-*//*
-    }
-*/
     private void SnakeMove()
     {
-       /* if (Time.time < nextUpdate)
-        {
-            return;
-        }*/
-        // if current time is more then the future time stamp we are allowed to move, then quickly move and calculate the next future time stamp
-        //else
-        //{
+
             transform.position = new Vector3(Mathf.Round(transform.position.x) + _direction.x * stepSize, Mathf.Round(transform.position.y) + stepSize * _direction.y, 0f);
-            // next future time stamp = current time + 1/(defaultSpeed * Difficulty)
-            //nextUpdate = Time.time + (1f / (10f * multi));
-            // if speed or difficulty is higher, then denominator bigger, then 1/D is very small number, so time stamps are closer
-            // hence faster movement
-        //}
+
     }
 
     // simple for loop that moves the snake body segment where the previous in list segment was
@@ -133,10 +119,12 @@ public class PlayerController : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.CompareTag("Walls"))
         {
             SnakeWrapAround(collision);
         }
+
     }
 
     // wrap the snake around the screen, if he touches the wall collider
@@ -162,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetState()
     {
-
+        snake.IsDead = false;
         transform.position = Vector3.zero; // begin from original (centre of the screen)
         _direction = Vector2.right; // Initial direction snake start to move
         // Call to destroy all the snakebody segments game Objects.
@@ -176,6 +164,8 @@ public class PlayerController : MonoBehaviour
         //SnakeGrow(initialSize);
         SnakeGrow(snake.getInitialSize());
         // Reset Score
+        snake.ResetScore();
+        transform.GetComponent<BoxCollider2D>().enabled = true;
 
     }
 
@@ -196,6 +186,13 @@ public class PlayerController : MonoBehaviour
               
         
     }
+    public void PlayerDead()
+    {
+        Debug.Log("PlayerDeadCalled");
+        snake.IsDead = true;
+        gameMenu.ShowGameOverMenu();
+        transform.GetComponent<BoxCollider2D>().enabled = false;
+    }
 
     // Enable Unity's new input system
     private void OnEnable()
@@ -206,6 +203,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Player1Controller.Disable();
+
 
     }
 

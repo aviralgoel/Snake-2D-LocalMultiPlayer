@@ -88,6 +88,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UIController",
+            "id": "329df265-0353-4b41-a00c-0be295f9d38f",
+            "actions": [
+                {
+                    "name": "GamePaused",
+                    "type": "Button",
+                    "id": "a759f452-d57a-4a09-96e8-54744574e188",
+                    "expectedControlType": "Button",
+                    "processors": "Invert",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d0cc2643-82f2-4b5b-a61b-8755d8237078",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamePaused",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

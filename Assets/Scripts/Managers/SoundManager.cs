@@ -52,7 +52,9 @@ public class SoundManager : MonoBehaviour
 public enum SoundsNames
 {
     ButtonClick,
-    BackgroundMusic
+    BackgroundMusic,
+    PositiveCollectiblePickup,
+    NegativeCollectiblePickup
 }
 [System.Serializable]
 public class SoundInfo

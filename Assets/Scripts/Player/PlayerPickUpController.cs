@@ -3,18 +3,15 @@ using UnityEngine;
 public class PlayerPickUpController : MonoBehaviour
 {
     PlayerController controller;
-    PlayerStats snake;
     public int segmentsPerMassGainer = 1;
     public int segmentsPerMassLoser = 1;
     public float shieldTime = 3f;
     public float scoreBoostTime = 3f;
     public float speedUpTime = 3f;
-    public float scoreBoostMultiplier = 2f;
-    public float speedMultiplier = 2f;
+    public int scoreBoostMultiplier = 2;
     public int massGainerScore = 1;
     public int massLoserScore = 1;
-    [Range(0.5f, 1.5f)]
-    public float moveSpeed;
+    public float FastmoveSpeed = 0.3f;
 
     private float shieldTimeDelta;
     private float scoreBoostTimeDelta;
@@ -24,30 +21,40 @@ public class PlayerPickUpController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
-        snake = controller.snake;
+        
+    }
+    private void Start()
+    {   
+
     }
     private void Update()
-    {
+    {   
+
+        // back to non immune
         if (shieldTimeDelta > 0)
             shieldTimeDelta -= Time.deltaTime;
         else
         {   
             // back to default condition
-            snake.setIsImmune(false);
+            controller.snake.setIsImmune(false);
         }
+
+        // back to normal scoring
         if (scoreBoostTimeDelta > 0)
             scoreBoostTimeDelta -= Time.deltaTime;
         else
         {
             // back to default condition
-            scoreBoostMultiplier = 1f;
+            controller.snake.ScoreBoostMultiplier = 1;
         }
+
+        // Back to normal speed
         if (speedUpTimeDelta > 0)
             speedUpTimeDelta -= Time.deltaTime;
         else
         {
             // back to default condition
-            snake.MoveSpeed = 1f;
+            controller.snake.MoveSpeed = 1f;
         }
 
     }
@@ -56,44 +63,37 @@ public class PlayerPickUpController : MonoBehaviour
         if(collision.CompareTag("MassGainer"))
         {
             controller.SnakeGrow(segmentsPerMassGainer);
-            snake.IncreaseScore(massGainerScore);
-            Debug.Log("New Score:" + snake.Score);
-            //Increase Score
+            controller.snake.IncreaseScore(massGainerScore);
+         
         }
-        else if (collision.CompareTag("MassLoser") && !snake.getIsImmune())
+        else if (collision.CompareTag("MassLoser") && !controller.snake.getIsImmune())
         {   
-            // check if player size > segmentsPerMassLoser
-            Debug.Log("Decreasing Size");
             controller.SnakeDeGrow(segmentsPerMassLoser);
-            snake.DecreaseScore(massLoserScore);
+            controller.snake.DecreaseScore(massLoserScore);
         }
         else if (collision.CompareTag("SpeedUp"))
         {
             // Increase Snake Speed Difficulty
-            snake.MoveSpeed = moveSpeed;
+            Debug.Log("SpeedUp Picked");
+            controller.snake.MoveSpeed = FastmoveSpeed;
             speedUpTimeDelta = speedUpTime;
            
         }
         else if(collision.CompareTag("Shield"))
         {
-            snake.setIsImmune(true);
+            controller.snake.setIsImmune(true);
             shieldTimeDelta = shieldTime;
         }
         else if(collision.CompareTag("ScoreBoost"))
         {
-            // Increase Score Multiplier x2
-            Debug.Log("Score Boost Picked");
-            snake.ScoreBoostMultiplier = scoreBoostMultiplier;
+            // Increase Score Multiplier
+            controller.snake.ScoreBoostMultiplier = scoreBoostMultiplier;
             scoreBoostTimeDelta = scoreBoostTime;
         }
         // if player collides with itself and does not have immunity
-        else if(collision.CompareTag("Player") && !snake.getIsImmune())
+        else if(collision.CompareTag("Player") && !controller.snake.getIsImmune())
         {
-            Debug.Log("Player collided with itself");
-            // Reset the game
-            controller.ResetState();
-
-            
+           controller.PlayerDead();
         }
     }
 }

@@ -116,7 +116,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029173768132443468}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -154,9 +154,12 @@ MonoBehaviour:
     movespeed: 1
     score: 0
     scoreBoostMultiplier: 1
+    isDead: 0
   moveTimeDelta: 0
   stepSize: 1
   multi: 1
+  gamePaused: 0
+  gameMenu: {fileID: 0}
 --- !u!114 &47509095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,11 +174,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentsPerMassGainer: 2
   segmentsPerMassLoser: 2
-  shieldTime: 3
-  scoreBoostTime: 3
-  speedUpTime: 3
+  shieldTime: 5
+  scoreBoostTime: 5
+  speedUpTime: 5
   scoreBoostMultiplier: 2
-  speedMultiplier: 5
   massGainerScore: 1
   massLoserScore: 1
-  moveSpeed: 0.501
+  FastmoveSpeed: 0.3

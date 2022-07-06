@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 0}
   playMenu: {fileID: 0}
+  muteToggle: {fileID: 0}
