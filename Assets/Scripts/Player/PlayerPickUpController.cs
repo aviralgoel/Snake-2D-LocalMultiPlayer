@@ -11,7 +11,8 @@ public class PlayerPickUpController : MonoBehaviour
     public int scoreBoostMultiplier = 2;
     public int massGainerScore = 1;
     public int massLoserScore = 1;
-    public float FastmoveSpeed = 0.3f;
+    [Range(3,6)]
+    public float FastmoveSpeed = 3;
 
     private float shieldTimeDelta;
     private float scoreBoostTimeDelta;
@@ -54,7 +55,7 @@ public class PlayerPickUpController : MonoBehaviour
         else
         {
             // back to default condition
-            controller.snake.MoveSpeed = 1f;
+            controller.snake.Movespeed = 0.06f;
         }
 
     }
@@ -75,7 +76,7 @@ public class PlayerPickUpController : MonoBehaviour
         {
             // Increase Snake Speed Difficulty
             Debug.Log("SpeedUp Picked");
-            controller.snake.MoveSpeed = FastmoveSpeed;
+            controller.snake.Movespeed = FastmoveSpeed/100;
             speedUpTimeDelta = speedUpTime;
            
         }

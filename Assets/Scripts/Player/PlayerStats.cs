@@ -6,21 +6,23 @@ public class PlayerStats
 
     [SerializeField] private bool isImmune;
     [SerializeField] private int initialSize;
-    [SerializeField] private float movespeed = 1f;
+    [SerializeField] private float movespeed;
     [SerializeField] private int score = 0;
     [SerializeField] private int scoreBoostMultiplier = 1;
     [SerializeField] private bool isDead = false;
 
     // getters and setters
-    public float MoveSpeed { get => movespeed; set => movespeed = value; }
+   
     public int ScoreBoostMultiplier { get => scoreBoostMultiplier; set => scoreBoostMultiplier = value; }
     public int Score { get => score; }
     public bool IsDead { get => isDead; set => isDead = value; }
+    public float Movespeed { get => movespeed; set => movespeed = value; }
 
     public PlayerStats()
     {
         isImmune = false;
         initialSize = 4;
+        movespeed = 0.06f;
     }
     public void IncreaseScore(int _increment)
     {

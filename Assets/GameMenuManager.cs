@@ -68,7 +68,7 @@ public class GameMenuManager : MonoBehaviour
     {
         scoreText.text = "Score: " + controller.snake.Score;
         scoreMultiplierText.text = "Score Multiplier: " + controller.snake.ScoreBoostMultiplier;
-        speedText.text = "Speed: " + controller.snake.MoveSpeed;
+        speedText.text = "Speed: " + (int)(0.06/controller.snake.Movespeed);
         shieldText.text = "Shield:" + (controller.snake.getIsImmune() ? "On" : "Off");
 
     }

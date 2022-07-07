@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 _direction = Vector2.right;
     public PlayerStats snake = new PlayerStats();
     public float moveTimeDelta = 0;
+    public Transform leftSpawnPoint;
+    public Transform rightSpawnPoint;
+    public Transform upSpawnPoint;
+    public Transform downSpawnPoint;
 
     public int stepSize = 2;
     //public int initialSize = 2;
@@ -46,14 +50,14 @@ public class PlayerController : MonoBehaviour
             GetInput();
             if (moveTimeDelta > 0)
             {
-                moveTimeDelta -= Time.fixedDeltaTime;
+                moveTimeDelta -= Time.deltaTime;
             }
             else
             {
                 UpdateSnakeBodyPosition();
                 // Checks if  current time less than the future time stamp we are allowed to move, if yes, don't move, wait...
                 SnakeMove();
-                moveTimeDelta = snake.MoveSpeed;
+                moveTimeDelta = snake.Movespeed;
             }
         }
 
@@ -119,7 +123,7 @@ public class PlayerController : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         if (collision.CompareTag("Walls"))
         {
             SnakeWrapAround(collision);
@@ -134,15 +138,33 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         // the direction vector x is 0 when snake is moving horizontally left or right the screen
         if (snakeDirectionVector.x != 0f) 
-        {   
+        {
+            
+            if(transform.position.x < 0)
+            {
+                position.x = rightSpawnPoint.position.x;
+            }
+            else
+            {
+                Debug.Log("Snake Touched RL wall" + transform.position.x);  
+                position.x = leftSpawnPoint.position.x;
+            }
             // new intended position will be mirror position of where the snake hit + 1 unit extra towards the left/right.
-            position.x = -collision.transform.position.x + snakeDirectionVector.x;
+            
         }
         // the direction vector y is 0 when snake is moving horizontally up or down the screen
         else if (snakeDirectionVector.y != 0f) 
         {
             // new intended position will be mirror position of where the snake hit + 1 unit extra towards the left/right.
-            position.y = -collision.transform.position.y + snakeDirectionVector.y;
+            if (transform.position.y < 0)
+            {
+                position.y = upSpawnPoint.position.y;
+            }
+            else
+            {
+                Debug.Log("Snake Touched UD wall" + transform.position.y);
+                position.y = downSpawnPoint.position.y;
+            }
         }
         // new head position will be the intended position (rest body segments will follow the head)
         transform.position = position;
