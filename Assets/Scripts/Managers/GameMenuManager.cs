@@ -1,7 +1,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
+
+
 
 public class GameMenuManager : MonoBehaviour
 {
@@ -9,23 +10,26 @@ public class GameMenuManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
     public GameObject gameStats;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI shieldText;
-    public TextMeshProUGUI scoreMultiplierText;
-    public TextMeshProUGUI speedText;
     public Toggle muteToggle;
     public PlayerController controller;
     InputActions inputActions;
+    string currentSceneName;
     // Start is called before the first frame update
     void Awake()
     {
         inputActions = new InputActions();
         inputActions.UIController.GamePaused.started += ctx => { PauseUnpauseGame(); };
+        currentSceneName = SceneManager.GetActiveScene().name;
+        if(currentSceneName == "SinglePlayerGame")
+        {
+            GetComponent<MultiplayerGameStats>().enabled = false;      
+        }
+        if(currentSceneName == "MultiPlayerGame")
+        {
+            GetComponent<SinglePlayerStats>().enabled = false;
+        }
     }
-    private void Update()
-    {
-        updateStats();
-    }
+    
     private void PauseUnpauseGame()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf); // show / hide pause menu depending on its current status
@@ -64,13 +68,7 @@ public class GameMenuManager : MonoBehaviour
         SoundManager.Instance.Play(SoundsNames.ButtonClick);
         SoundManager.Instance.IsMute = (muteToggle.isOn);
     }
-    public void updateStats()
-    {
-        scoreText.text = "Score: " + controller.snake.Score;
-        scoreMultiplierText.text = "Score Multiplier: " + controller.snake.ScoreBoostMultiplier;
-        speedText.text = "Speed: " + (int)(controller.snake.DefaultSpeed / controller.snake.Movespeed);
-        shieldText.text = "Shield:" + (controller.snake.getIsImmune() ? "On" : "Off");
-    }
+ 
     public void ShowGameOverMenu()
     {
         gameOverMenu.SetActive(true);

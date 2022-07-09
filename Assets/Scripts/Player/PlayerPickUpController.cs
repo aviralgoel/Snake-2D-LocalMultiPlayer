@@ -1,19 +1,24 @@
 using UnityEngine;
 
 public class PlayerPickUpController : MonoBehaviour
-{
-    PlayerController controller;
+{   
+
+    [Header("Pickup Settings")] 
     public int segmentsPerMassGainer = 1;
     public int segmentsPerMassLoser = 1;
     public float shieldTime = 3f;
     public float scoreBoostTime = 3f;
     public float speedUpTime = 3f;
+    public int scoreDefaultMultiplier;
     public int scoreBoostMultiplier = 2;
     public int massGainerScore = 1;
     public int massLoserScore = 1;
     [Range(3,6)]
-    public float FastmoveSpeed = 3;
+    public float fastMoveSpeed = 3f;
+    [Range(3, 6)]
+    public float defaultMoveSpeed = 6f;
 
+    PlayerController controller;
     private float shieldTimeDelta;
     private float scoreBoostTimeDelta;
     private float speedUpTimeDelta;
@@ -30,32 +35,21 @@ public class PlayerPickUpController : MonoBehaviour
     }
     private void Update()
     {   
-
-        // back to non immune
         if (shieldTimeDelta > 0)
             shieldTimeDelta -= Time.deltaTime;
         else
-        {   
-            // back to default condition
-            controller.snake.setIsImmune(false);
-        }
+            controller.snake.setIsImmune(false); // back to default condition
 
-        // back to normal scoring
         if (scoreBoostTimeDelta > 0)
             scoreBoostTimeDelta -= Time.deltaTime;
         else
-        {
-            // back to default condition
-            controller.snake.ScoreBoostMultiplier = 1;
-        }
-
-        // Back to normal speed
+            controller.snake.ScoreBoostMultiplier = scoreDefaultMultiplier; // // back to default condition
+        
         if (speedUpTimeDelta > 0)
             speedUpTimeDelta -= Time.deltaTime;
         else
         {
-            // back to default condition
-            controller.snake.Movespeed = 0.06f;
+            controller.snake.Movespeed = defaultMoveSpeed/100f;  // back to default condition
         }
 
     }
@@ -74,11 +68,8 @@ public class PlayerPickUpController : MonoBehaviour
         }
         else if (collision.CompareTag("SpeedUp"))
         {
-            // Increase Snake Speed Difficulty
-            Debug.Log("SpeedUp Picked");
-            controller.snake.Movespeed = FastmoveSpeed/100;
+            controller.snake.Movespeed = fastMoveSpeed/100;
             speedUpTimeDelta = speedUpTime;
-           
         }
         else if(collision.CompareTag("Shield"))
         {

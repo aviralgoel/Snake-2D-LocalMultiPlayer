@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2029173768132443468, guid: b8d26fec5833dfd419d7634ead483c83, type: 3}
       propertyPath: m_Name
-      value: Snake
+      value: Snake1
       objectReference: {fileID: 0}
     - target: {fileID: 6645205076210211264, guid: b8d26fec5833dfd419d7634ead483c83, type: 3}
       propertyPath: gameMenu
@@ -506,6 +506,14 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 1363834428568549973, guid: e61963fbb8f8f794bba6151673def1df, type: 3}
+      propertyPath: massGainer
+      value: 
+      objectReference: {fileID: 127547156}
+    - target: {fileID: 1363834428568549973, guid: e61963fbb8f8f794bba6151673def1df, type: 3}
+      propertyPath: collectibles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363834428568549973, guid: e61963fbb8f8f794bba6151673def1df, type: 3}
       propertyPath: collectibles.Array.data[0]
       value: 
       objectReference: {fileID: 2536570544985787777}
@@ -520,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 1363834428568549973, guid: e61963fbb8f8f794bba6151673def1df, type: 3}
       propertyPath: collectibles.Array.data[3]
       value: 
-      objectReference: {fileID: 127547156}
+      objectReference: {fileID: 573424567764208618}
     - target: {fileID: 1363834428568549973, guid: e61963fbb8f8f794bba6151673def1df, type: 3}
       propertyPath: collectibles.Array.data[4]
       value: 
@@ -806,6 +814,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4867786034864017826, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 264358313}
+    - target: {fileID: 4867786034864017826, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 601350386}
+    - target: {fileID: 4867786034864017826, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1694148518}
+    - target: {fileID: 4867786034864017826, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
+      propertyPath: shieldText
+      value: 
+      objectReference: {fileID: 1212509343}
+    - target: {fileID: 4867786034864017826, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
+      propertyPath: scoreMultiplierText
+      value: 
+      objectReference: {fileID: 1026059039}
     - target: {fileID: 7981875973406969076, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
       propertyPath: m_RootOrder
       value: 7

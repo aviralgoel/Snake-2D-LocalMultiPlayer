@@ -112,6 +112,94 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Player2Controller"",
+            ""id"": ""a9ab0f76-c768-4544-848c-e66a8b991fd5"",
+            ""actions"": [
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""491e0f43-c647-4326-8d9f-acb2b462b2c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""afb84a4b-0302-4937-ab7b-b34bb6e0e6eb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""02f371b1-5c3e-4b9e-9df0-afd55e78c56d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""42f547e4-de36-4e64-aaec-660594f254d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""43dbfdec-db56-4877-a0cc-97e06f07c181"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9abc4da-676a-46f3-b55c-7581df31e48e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c71a0149-b7b5-4785-82bc-b16c86d4b399"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d453b83-e5e3-4a73-bb29-75d05e2abc22"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""UIController"",
             ""id"": ""329df265-0353-4b41-a00c-0be295f9d38f"",
             ""actions"": [
@@ -148,6 +236,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player1Controller_Down = m_Player1Controller.FindAction("Down", throwIfNotFound: true);
         m_Player1Controller_Right = m_Player1Controller.FindAction("Right", throwIfNotFound: true);
         m_Player1Controller_Left = m_Player1Controller.FindAction("Left", throwIfNotFound: true);
+        // Player2Controller
+        m_Player2Controller = asset.FindActionMap("Player2Controller", throwIfNotFound: true);
+        m_Player2Controller_Up = m_Player2Controller.FindAction("Up", throwIfNotFound: true);
+        m_Player2Controller_Down = m_Player2Controller.FindAction("Down", throwIfNotFound: true);
+        m_Player2Controller_Right = m_Player2Controller.FindAction("Right", throwIfNotFound: true);
+        m_Player2Controller_Left = m_Player2Controller.FindAction("Left", throwIfNotFound: true);
         // UIController
         m_UIController = asset.FindActionMap("UIController", throwIfNotFound: true);
         m_UIController_GamePaused = m_UIController.FindAction("GamePaused", throwIfNotFound: true);
@@ -264,6 +358,63 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     }
     public Player1ControllerActions @Player1Controller => new Player1ControllerActions(this);
 
+    // Player2Controller
+    private readonly InputActionMap m_Player2Controller;
+    private IPlayer2ControllerActions m_Player2ControllerActionsCallbackInterface;
+    private readonly InputAction m_Player2Controller_Up;
+    private readonly InputAction m_Player2Controller_Down;
+    private readonly InputAction m_Player2Controller_Right;
+    private readonly InputAction m_Player2Controller_Left;
+    public struct Player2ControllerActions
+    {
+        private @InputActions m_Wrapper;
+        public Player2ControllerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Up => m_Wrapper.m_Player2Controller_Up;
+        public InputAction @Down => m_Wrapper.m_Player2Controller_Down;
+        public InputAction @Right => m_Wrapper.m_Player2Controller_Right;
+        public InputAction @Left => m_Wrapper.m_Player2Controller_Left;
+        public InputActionMap Get() { return m_Wrapper.m_Player2Controller; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player2ControllerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer2ControllerActions instance)
+        {
+            if (m_Wrapper.m_Player2ControllerActionsCallbackInterface != null)
+            {
+                @Up.started -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnUp;
+                @Up.performed -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnUp;
+                @Up.canceled -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnUp;
+                @Down.started -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnDown;
+                @Right.started -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnRight;
+                @Right.performed -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnRight;
+                @Right.canceled -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnRight;
+                @Left.started -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnLeft;
+                @Left.performed -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnLeft;
+                @Left.canceled -= m_Wrapper.m_Player2ControllerActionsCallbackInterface.OnLeft;
+            }
+            m_Wrapper.m_Player2ControllerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Right.started += instance.OnRight;
+                @Right.performed += instance.OnRight;
+                @Right.canceled += instance.OnRight;
+                @Left.started += instance.OnLeft;
+                @Left.performed += instance.OnLeft;
+                @Left.canceled += instance.OnLeft;
+            }
+        }
+    }
+    public Player2ControllerActions @Player2Controller => new Player2ControllerActions(this);
+
     // UIController
     private readonly InputActionMap m_UIController;
     private IUIControllerActions m_UIControllerActionsCallbackInterface;
@@ -297,6 +448,13 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     }
     public UIControllerActions @UIController => new UIControllerActions(this);
     public interface IPlayer1ControllerActions
+    {
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+    }
+    public interface IPlayer2ControllerActions
     {
         void OnUp(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);

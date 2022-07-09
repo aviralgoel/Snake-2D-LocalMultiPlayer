@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Move Settings")]
     public PlayerStats snake = new PlayerStats();
+    public InputHandler _input;
     public int stepSize = 2;    // unity units the snake covers in one step (bigger steps = more empty space between u-turns)
     private Vector2 _direction = Vector2.left;  // the default moving direction of snake on spawn
     private float moveTimeDelta = 0; // local variable for speed
@@ -17,33 +19,25 @@ public class PlayerController : MonoBehaviour
     public Transform downSpawnPoint;
     [Header("General Variables")]
     public GameMenuManager gameMenu;
-    InputActions inputActions;
-    bool WPressed, APressed, SPressed, DPressed;
     private List<Transform> snakeBodySegments = new List<Transform>();
     public bool gamePaused;
     
 
-    private void Awake()
-    {
-        inputActions = new InputActions();
-        inputActions.Player1Controller.Up.performed += ctx => { WPressed = ctx.ReadValueAsButton(); };
-        inputActions.Player1Controller.Down.performed += ctx => { SPressed = ctx.ReadValueAsButton(); };
-        inputActions.Player1Controller.Left.performed += ctx => { APressed = ctx.ReadValueAsButton(); };
-        inputActions.Player1Controller.Right.performed += ctx => { DPressed = ctx.ReadValueAsButton(); };
-    }
+  
     private void Start()
     {
         PlayerSpawn();
     }
     private void Update()
     {   
-        if(!gamePaused)
+        if(!gamePaused && !snake.IsDead)
         {
+            CheckForWrapAround();
             if (_direction != Vector2.zero)
             {
                 snakeDirectionVector = _direction;
             }
-            GetInput();
+            _direction = _input.GetInput(_direction);
             if (moveTimeDelta > 0) // how frequently the snake should move
             {
                 moveTimeDelta -= Time.deltaTime;
@@ -57,6 +51,15 @@ public class PlayerController : MonoBehaviour
             }
         }  
     }
+
+    private void CheckForWrapAround()
+    {
+        if(transform.position.y > upSpawnPoint.position.y || transform.position.y < downSpawnPoint.position.y || transform.position.x > rightSpawnPoint.position.x || transform.position.x < leftSpawnPoint.position.x)
+        {
+            SnakeWrapAround();
+        }
+    }
+
     // add x number of segments to snake body
     public void SnakeGrow(int _numOfSegments)
     {   
@@ -71,14 +74,17 @@ public class PlayerController : MonoBehaviour
     {   
         // things we do when player spawn
         snake.IsDead = false;  // - snake object variable IsDead = true
-        transform.position = Vector3.zero; // set position to 0,0,0
-        _direction = Vector2.left; // make snake face left direction
+        if(gameObject.name == "Snake2")
+        {
+            transform.position = new Vector3(5,5,0); // set position to 0,0,0
+            _direction = Vector2.right; // make snake face left direction
+        }
         SnakeDeGrow(snakeBodySegments.Count);  // destroy old body of the snake
         snakeBodySegments.Clear();  // clear snake body transform list
         snakeBodySegments.Add(transform); // add back the head of snake to the transform list
         SnakeGrow(snake.getInitialSize()); // fatten up snake to some initial size
         snake.ResetScore(); // reset score
-        transform.GetComponent<BoxCollider2D>().enabled = true; // enable the collider
+        Invoke("ActivatePlayerCollider", 3f);
 
     }
     public void SnakeDeGrow(int _numOfSegments)
@@ -112,38 +118,14 @@ public class PlayerController : MonoBehaviour
             snakeBodySegments[i].position = snakeBodySegments[i - 1].position;
         }
     }
-    // Set player move direction based on user input and snake's current direction
-    private void GetInput()
-    {
-        if (WPressed && snakeDirectionVector.x != 0)
-        {
-            _direction = Vector2.up;
-            WPressed = false;
-        }
-        else if (SPressed && snakeDirectionVector.x != 0)
-        {
-            _direction = Vector2.down;
-            SPressed = false;
-        }
-        else if (APressed && snakeDirectionVector.y != 0)
-        {
-            _direction = Vector2.left;
-            APressed = false;
-        }
-        else if (DPressed && snakeDirectionVector.y != 0)
-        {
-            _direction = Vector2.right;
-            DPressed = false;
-        }
 
-    }
     // move snake in particular direction
     private void SnakeMove()
     {
         transform.position = new Vector3(Mathf.Round(transform.position.x) + _direction.x * stepSize, Mathf.Round(transform.position.y) + stepSize * _direction.y, 0f);
     }
     // wrap the snake around the screen, if snake touches the wall collider
-    private void SnakeWrapAround(Collider2D collision)
+    private void SnakeWrapAround()
     {
         // current snake head position
         Vector3 position = transform.position;
@@ -178,22 +160,9 @@ public class PlayerController : MonoBehaviour
         // new head position will be the intended position (rest body segments will follow the head)
         transform.position = position;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void ActivatePlayerCollider()
     {
-        if (collision.CompareTag("Walls"))
-        {
-            SnakeWrapAround(collision);
-        }
-    }
-    private void OnEnable()
-    {   
-        //enabling unity's input system
-        inputActions.Player1Controller.Enable();
-    }   
-    private void OnDisable()
-    {   
-        // disable unity's input system
-        inputActions.Player1Controller.Disable();
+        transform.GetComponent<BoxCollider2D>().enabled = true; // enable the collider
     }
 
 }

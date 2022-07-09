@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 2029173768132443469}
   - component: {fileID: 6645205076210211264}
   - component: {fileID: 47509095}
+  - component: {fileID: 1694148524}
   m_Layer: 0
-  m_Name: Snake
+  m_Name: Snake2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.16856575, a: 1}
+  m_Color: {r: 0.003921569, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7936bcf1f006a0042a89280c41fa8aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snakeBodyPrefab: {fileID: 3744274421036289045, guid: ad6a674395664da49aabf84c5ea53cd3, type: 3}
   snake:
     isImmune: 1
     initialSize: 4
@@ -155,15 +155,16 @@ MonoBehaviour:
     score: 0
     scoreBoostMultiplier: 1
     isDead: 0
-  moveTimeDelta: 0
+    defaultSpeed: 0.06
+  _input: {fileID: 1694148524}
+  stepSize: 1
+  snakeBodyPrefab: {fileID: 3744274421036289045, guid: d145bfd001999904bb117241eee0d6d4, type: 3}
   leftSpawnPoint: {fileID: 0}
   rightSpawnPoint: {fileID: 0}
   upSpawnPoint: {fileID: 0}
   downSpawnPoint: {fileID: 0}
-  stepSize: 1
-  multi: 1
-  gamePaused: 0
   gameMenu: {fileID: 0}
+  gamePaused: 0
 --- !u!114 &47509095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +182,21 @@ MonoBehaviour:
   shieldTime: 7
   scoreBoostTime: 7
   speedUpTime: 7
+  scoreDefaultMultiplier: 1
   scoreBoostMultiplier: 2
   massGainerScore: 2
   massLoserScore: 1
-  FastmoveSpeed: 3
+  fastMoveSpeed: 3
+  defaultMoveSpeed: 6
+--- !u!114 &1694148524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029173768132443468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a2711ac3940cb4cbc555c5685567c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
