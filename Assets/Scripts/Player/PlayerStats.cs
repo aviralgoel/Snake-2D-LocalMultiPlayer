@@ -10,6 +10,7 @@ public class PlayerStats
     [SerializeField] private int score = 0;
     [SerializeField] private int scoreBoostMultiplier = 1;
     [SerializeField] private bool isDead = false;
+    [SerializeField] private float defaultSpeed = 0.06f;
 
     // getters and setters
    
@@ -17,6 +18,7 @@ public class PlayerStats
     public int Score { get => score; }
     public bool IsDead { get => isDead; set => isDead = value; }
     public float Movespeed { get => movespeed; set => movespeed = value; }
+    public float DefaultSpeed { get => defaultSpeed; set => defaultSpeed = value; }
 
     public PlayerStats()
     {

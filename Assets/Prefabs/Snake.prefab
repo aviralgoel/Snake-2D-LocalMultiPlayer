@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &2029173768132443469
 BoxCollider2D:
@@ -156,6 +156,10 @@ MonoBehaviour:
     scoreBoostMultiplier: 1
     isDead: 0
   moveTimeDelta: 0
+  leftSpawnPoint: {fileID: 0}
+  rightSpawnPoint: {fileID: 0}
+  upSpawnPoint: {fileID: 0}
+  downSpawnPoint: {fileID: 0}
   stepSize: 1
   multi: 1
   gamePaused: 0
@@ -172,12 +176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfe66d8c6a611f43bb7bd199ad4d969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentsPerMassGainer: 2
-  segmentsPerMassLoser: 2
-  shieldTime: 5
-  scoreBoostTime: 5
-  speedUpTime: 5
+  segmentsPerMassGainer: 1
+  segmentsPerMassLoser: 1
+  shieldTime: 7
+  scoreBoostTime: 7
+  speedUpTime: 7
   scoreBoostMultiplier: 2
-  massGainerScore: 1
+  massGainerScore: 2
   massLoserScore: 1
-  FastmoveSpeed: 0.3
+  FastmoveSpeed: 3

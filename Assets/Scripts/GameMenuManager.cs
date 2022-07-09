@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameMenuManager : MonoBehaviour
 {
-    InputActions inputActions;
+    [Header("UI Prefabs")]
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
     public GameObject gameStats;
@@ -15,7 +15,8 @@ public class GameMenuManager : MonoBehaviour
     public TextMeshProUGUI speedText;
     public Toggle muteToggle;
     public PlayerController controller;
-// Start is called before the first frame update
+    InputActions inputActions;
+    // Start is called before the first frame update
     void Awake()
     {
         inputActions = new InputActions();
@@ -27,16 +28,16 @@ public class GameMenuManager : MonoBehaviour
     }
     private void PauseUnpauseGame()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
-        controller.gamePaused = pauseMenu.activeSelf;
+        pauseMenu.SetActive(!pauseMenu.activeSelf); // show / hide pause menu depending on its current status
+        controller.gamePaused = pauseMenu.activeSelf; // pause or unpause game depending on pause menu hidden or not
     }
-
     public void OnPauseMenuResumeButtonClicked()
-    {   // button sound
+    {   
+        // button sound
         SoundManager.Instance.Play(SoundsNames.ButtonClick);
         // switch off the pause menu
         pauseMenu.SetActive(false);
-        controller.gamePaused = pauseMenu.activeSelf;
+        controller.gamePaused = false;
     }
     public void OnPauseMenuMenuButtonClicked()
     {   
@@ -44,11 +45,10 @@ public class GameMenuManager : MonoBehaviour
         SoundManager.Instance.Play(SoundsNames.ButtonClick);
         //change scene to main menu
         SceneManager.LoadScene(0);
-    
     }
     public void OnGameOverPlayAgainButtonClicked()
     {
-        controller.ResetState();
+        controller.PlayerSpawn();
         gameOverMenu.SetActive(false);
         gameStats.SetActive(true);
        
@@ -68,17 +68,14 @@ public class GameMenuManager : MonoBehaviour
     {
         scoreText.text = "Score: " + controller.snake.Score;
         scoreMultiplierText.text = "Score Multiplier: " + controller.snake.ScoreBoostMultiplier;
-        speedText.text = "Speed: " + (int)(0.06/controller.snake.Movespeed);
+        speedText.text = "Speed: " + (int)(controller.snake.DefaultSpeed / controller.snake.Movespeed);
         shieldText.text = "Shield:" + (controller.snake.getIsImmune() ? "On" : "Off");
-
     }
     public void ShowGameOverMenu()
     {
         gameOverMenu.SetActive(true);
-        gameStats.SetActive(false);
-        
+        gameStats.SetActive(false);  
     }
-    // Update is called once per frame
     private void OnEnable()
     {
         inputActions.UIController.Enable();
