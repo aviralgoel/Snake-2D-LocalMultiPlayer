@@ -32,54 +32,68 @@ public class GameMenuManager : MonoBehaviour
     
     private void PauseUnpauseGame()
     {
+        PlayButtonClickSound();
         pauseMenu.SetActive(!pauseMenu.activeSelf); // show / hide pause menu depending on its current status
         controller.gamePaused = pauseMenu.activeSelf; // pause or unpause game depending on pause menu hidden or not
     }
     public void OnPauseMenuResumeButtonClicked()
-    {   
+    {
+        //Debug.Log("Resume Button Clicked");
         // button sound
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
-        // switch off the pause menu
+        PlayButtonClickSound();
         pauseMenu.SetActive(false);
         controller.gamePaused = false;
     }
     public void OnPauseMenuMenuButtonClicked()
-    {   
+    {
+        //Debug.Log("Menu Button Clicked");
         // button sound
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
+        PlayButtonClickSound();
         //change scene to main menu
         SceneManager.LoadScene(0);
+
     }
     public void OnGameOverPlayAgainButtonClicked()
     {
+        PlayButtonClickSound();
         controller.PlayerSpawn();
         gameOverMenu.SetActive(false);
         gameStats.SetActive(true);
+
        
     }
     public void OnGameOverMainMenuButtonClicked()
     {
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
-        //change scene to main menu
+        PlayButtonClickSound();
         SceneManager.LoadScene(0);
     }
     public void MuteToggleClicked(bool _t)
-    {   
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
-        SoundManager.Instance.IsMute = (muteToggle.isOn);
+    {
+       
+        Debug.Log("Menu UI MUTE Button Clicked");
+
+        SoundManager.Instance.SetIsMute(muteToggle.isOn);
     }
  
     public void ShowGameOverMenu()
     {
         gameOverMenu.SetActive(true);
-        gameStats.SetActive(false);  
+        gameStats.SetActive(false);
+        
     }
     private void OnEnable()
     {
         inputActions.UIController.Enable();
+        muteToggle.isOn = SoundManager.Instance.IsMute;
+       
+
     }
     private void OnDisable()
     {
         inputActions.UIController.Disable();
+    }
+    private void PlayButtonClickSound()
+    {
+        SoundManager.Instance.Play(SoundsNames.ButtonClick);
     }
 }

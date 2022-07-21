@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 2029173768132443469}
   - component: {fileID: 6645205076210211264}
   - component: {fileID: 47509095}
+  - component: {fileID: 420887414}
+  - component: {fileID: 420887422}
   m_Layer: 0
-  m_Name: Snake1 1
-  m_TagString: Player
+  m_Name: Snake1
+  m_TagString: Player 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,6 +157,7 @@ MonoBehaviour:
     scoreBoostMultiplier: 1
     isDead: 0
     defaultSpeed: 0.06
+  _input: {fileID: 420887414}
   stepSize: 1
   snakeBodyPrefab: {fileID: 3744274421036289045, guid: ad6a674395664da49aabf84c5ea53cd3, type: 3}
   leftSpawnPoint: {fileID: 0}
@@ -162,6 +165,7 @@ MonoBehaviour:
   upSpawnPoint: {fileID: 0}
   downSpawnPoint: {fileID: 0}
   gameMenu: {fileID: 0}
+  winLoseText: {fileID: 0}
   gamePaused: 0
 --- !u!114 &47509095
 MonoBehaviour:
@@ -180,7 +184,35 @@ MonoBehaviour:
   shieldTime: 7
   scoreBoostTime: 7
   speedUpTime: 7
+  scoreDefaultMultiplier: 5
   scoreBoostMultiplier: 2
   massGainerScore: 2
   massLoserScore: 1
-  FastmoveSpeed: 3
+  fastMoveSpeed: 3
+  defaultMoveSpeed: 6
+--- !u!114 &420887414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029173768132443468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a2711ac3940cb4cbc555c5685567c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &420887422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029173768132443468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa51a2bad47e4e840a759b6d75df1290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6645205076210211264}
+  opponent: {fileID: 0}

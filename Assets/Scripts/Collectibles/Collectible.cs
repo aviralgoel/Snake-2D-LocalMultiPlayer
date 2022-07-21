@@ -5,7 +5,7 @@ public class Collectible : MonoBehaviour
     public BoxCollider2D gridArea;
     public bool isCollected = false;
     private void Start()
-    {   
+    {
         RandomPosition();
     }
     private void RandomPosition()
@@ -18,7 +18,7 @@ public class Collectible : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player 1") || collision.CompareTag("Player 2"))
         {
             gameObject.SetActive(false);
             isCollected = true;

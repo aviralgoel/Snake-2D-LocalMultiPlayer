@@ -19,43 +19,54 @@ public class MenuManager : MonoBehaviour
 
     public void OnPlayButtonClicked()
     {
+        PlayButtonClickSound();
         // Switch off the Main Menu
         mainMenu.SetActive(false);
         // Switch on the Play Menu
         playMenu.SetActive(true);
-        // Play some sound
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
-
     }
     public void OnQuitButtonClicked()
     {
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
-        Debug.Log("Quit Game!");
+        PlayButtonClickSound();
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #endif
+        Application.Quit();
     }
     public void PlayMenuBackButtonClicked()
-    {   
-
+    {  
         // set play menu inactive
         playMenu.SetActive(false);
         // set main menu active
         mainMenu.SetActive(true);
         // play sound
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
+        PlayButtonClickSound();
+
     }
     public void SinglePlayerButtonClicked()
     {
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
+        PlayButtonClickSound();
         SceneManager.LoadScene(sceneIndexOfSinglePlayer);
     }
     public void MultiPlayerButtonClicked()
     {
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
+        PlayButtonClickSound();
         SceneManager.LoadScene(sceneIndexOfMultiPlayer);
     }
     public void MuteToggleClicked(bool _isMute)
     {
-        SoundManager.Instance.Play(SoundsNames.ButtonClick);
-        SoundManager.Instance.IsMute = (muteToggle.isOn);
+        PlayButtonClickSound();
+        SoundManager.Instance.SetIsMute(muteToggle.isOn);
     }
+    private void PlayButtonClickSound()
+    {
+        SoundManager.Instance.Play(SoundsNames.ButtonClick);
+    }
+    private void OnEnable()
+    {
+        
+        muteToggle.isOn = SoundManager.Instance.IsMute;
 
+
+    }
 }

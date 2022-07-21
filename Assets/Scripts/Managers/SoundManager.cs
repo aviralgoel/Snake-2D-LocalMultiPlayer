@@ -24,8 +24,16 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        isMute = false;
+              
 
+    }
+    public void Start()
+    {
+        
+       
+        SoundManager.Instance.Play(SoundsNames.BackgroundMusic);
+        isMute = false;
+        Debug.Log("Starting..");
     }
     public void Play(SoundsNames sound)
     {
@@ -42,12 +50,31 @@ public class SoundManager : MonoBehaviour
         if (clip != null && sound == SoundsNames.BackgroundMusic)
         {
             backgroundMusicSource.Play();
+            
+        }
+    }
+    public void Stop(SoundsNames sound)
+    {
+        if (isMute)
+            return;
+        AudioClip clip = getSoundClip(sound);   
+        if (clip != null && sound == SoundsNames.BackgroundMusic)
+        {
+            backgroundMusicSource.Stop();
         }
     }
     private AudioClip getSoundClip(SoundsNames sound)
     {
         return Array.Find(ListOfSounds, item => item.name == sound).clipName;
     }
+    public void SetIsMute(bool _status)
+    {
+        Debug.Log("Menu UI MUTE Button " + _status);
+        isMute = _status;
+        SFXSource.mute = _status;
+        backgroundMusicSource.mute = _status;
+    }
+
 }
 public enum SoundsNames
 {

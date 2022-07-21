@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerPickUpController : MonoBehaviour
 {   
@@ -29,10 +30,6 @@ public class PlayerPickUpController : MonoBehaviour
         controller = GetComponent<PlayerController>();
         
     }
-    private void Start()
-    {   
-
-    }
     private void Update()
     {   
         if (shieldTimeDelta > 0)
@@ -54,38 +51,51 @@ public class PlayerPickUpController : MonoBehaviour
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {   
         if(collision.CompareTag("MassGainer"))
         {
             controller.SnakeGrow(segmentsPerMassGainer);
+            SoundManager.Instance.Play(SoundsNames.PositiveCollectiblePickup);
             controller.snake.IncreaseScore(massGainerScore);
          
         }
         else if (collision.CompareTag("MassLoser") && !controller.snake.getIsImmune())
-        {   
+        {       
             controller.SnakeDeGrow(segmentsPerMassLoser);
             controller.snake.DecreaseScore(massLoserScore);
+            SoundManager.Instance.Play(SoundsNames.NegativeCollectiblePickup);
+            if(controller.snake.Score < 0)
+            {
+                controller.PlayerDead();
+            }
         }
         else if (collision.CompareTag("SpeedUp"))
         {
             controller.snake.Movespeed = fastMoveSpeed/100;
             speedUpTimeDelta = speedUpTime;
+            SoundManager.Instance.Play(SoundsNames.PositiveCollectiblePickup);
         }
         else if(collision.CompareTag("Shield"))
         {
             controller.snake.setIsImmune(true);
             shieldTimeDelta = shieldTime;
+            SoundManager.Instance.Play(SoundsNames.PositiveCollectiblePickup);
         }
         else if(collision.CompareTag("ScoreBoost"))
         {
             // Increase Score Multiplier
             controller.snake.ScoreBoostMultiplier = scoreBoostMultiplier;
             scoreBoostTimeDelta = scoreBoostTime;
+            SoundManager.Instance.Play(SoundsNames.PositiveCollectiblePickup);
         }
         // if player collides with itself and does not have immunity
-        else if(collision.CompareTag("Player") && !controller.snake.getIsImmune())
+        if (collision.CompareTag(transform.gameObject.tag) && !controller.snake.getIsImmune())
         {
-           controller.PlayerDead();
+            SoundManager.Instance.Play(SoundsNames.NegativeCollectiblePickup);
+            controller.PlayerDead();
         }
+
+
     }
+
 }
