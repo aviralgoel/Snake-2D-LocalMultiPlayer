@@ -31,10 +31,15 @@ public class GameMenuManager : MonoBehaviour
     }
     
     private void PauseUnpauseGame()
-    {
-        PlayButtonClickSound();
-        pauseMenu.SetActive(!pauseMenu.activeSelf); // show / hide pause menu depending on its current status
-        controller.gamePaused = pauseMenu.activeSelf; // pause or unpause game depending on pause menu hidden or not
+    {   
+        // pause menu only accessible as long as Game Over Menu not visible
+        if(gameOverMenu.activeSelf == false)
+        {
+            PlayButtonClickSound();
+            pauseMenu.SetActive(!pauseMenu.activeSelf); // show / hide pause menu depending on its current status
+            controller.gamePaused = pauseMenu.activeSelf; // pause or unpause game depending on pause menu hidden or not
+        }
+        
     }
     public void OnPauseMenuResumeButtonClicked()
     {
@@ -56,11 +61,8 @@ public class GameMenuManager : MonoBehaviour
     public void OnGameOverPlayAgainButtonClicked()
     {
         PlayButtonClickSound();
-        controller.PlayerSpawn();
-        gameOverMenu.SetActive(false);
-        gameStats.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-       
     }
     public void OnGameOverMainMenuButtonClicked()
     {

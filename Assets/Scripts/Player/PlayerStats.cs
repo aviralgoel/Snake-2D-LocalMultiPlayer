@@ -11,6 +11,7 @@ public class PlayerStats
     [SerializeField] private int scoreBoostMultiplier = 1;
     [SerializeField] private bool isDead = false;
     [SerializeField] private float defaultSpeed = 0.06f;
+    [SerializeField] public int playerID;
 
     // getters and setters
    

@@ -75,8 +75,17 @@ public class PlayerController : MonoBehaviour
     {   
         // things we do when player spawn
         snake.IsDead = false;  // - snake object variable IsDead = true
-         transform.position = new Vector3(0, 0, 0); // set position to 0,0,0
-         _direction = Vector2.left; // make snake face left direction    
+        if(snake.playerID == 2)
+        {
+            transform.position = new Vector3(5, 5, 0); // set position to 0,0,0
+            _direction = Vector2.right; // make snake face left direction 
+        }
+        else
+        {
+            transform.position = new Vector3(0, 0, 0); // set position to 0,0,0
+            _direction = Vector2.left; // make snake face left direction   
+        }
+ 
         SnakeDeGrow(snakeBodySegments.Count);  // destroy old body of the snake
         snakeBodySegments.Clear();  // clear snake body transform list
         snakeBodySegments.Add(transform); // add back the head of snake to the transform list

@@ -244,6 +244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snake2
       objectReference: {fileID: 0}
+    - target: {fileID: 2029173768132443468, guid: 28aff1fe1e70d4b4fa2dab0ef444d131, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6645205076210211264, guid: 28aff1fe1e70d4b4fa2dab0ef444d131, type: 3}
       propertyPath: gameMenu
       value: 
@@ -281,14 +285,38 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 922299799}
-    - target: {fileID: 1095576313957122127, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPauseMenuMenuButtonClicked
-      objectReference: {fileID: 0}
     - target: {fileID: 1095576314154068557, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 922299799}
+    - target: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 922299799}
+    - target: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MuteToggleClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4585598503369675267, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -383,10 +411,6 @@ PrefabInstance:
       objectReference: {fileID: 922299799}
     - target: {fileID: 5717424192937456640, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 922299799}
-    - target: {fileID: 8561292238684094501, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 922299799}
     m_RemovedComponents: []
@@ -670,6 +694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snake1
       objectReference: {fileID: 0}
+    - target: {fileID: 2029173768132443468, guid: b8d26fec5833dfd419d7634ead483c83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6645205076210211264, guid: b8d26fec5833dfd419d7634ead483c83, type: 3}
       propertyPath: gameMenu
       value: 
@@ -832,9 +860,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1284527733 stripped
+--- !u!114 &1378695268 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3937212835933647978, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2130609528530041390, guid: dc61f3ba9a739f444bd43b03d380cb71, type: 3}
   m_PrefabInstance: {fileID: 203453348}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -958,7 +986,7 @@ PrefabInstance:
     - target: {fileID: 7981875973406969083, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
       propertyPath: muteToggle
       value: 
-      objectReference: {fileID: 1284527733}
+      objectReference: {fileID: 1378695268}
     - target: {fileID: 7981875973406969083, guid: 9fecc12680fdbe44083c0336a147e3e3, type: 3}
       propertyPath: gameOverMenu
       value: 
