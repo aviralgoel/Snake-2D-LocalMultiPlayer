@@ -1,9 +1,11 @@
 # Snake 2D Reloaded (Snake-2D-LocalMultiPlayer)
 <p align="center">
 A 2D recreation of classic snake game with local multiplayer option and additional gameplay features.
-
-<img width="460" height="300" src="https://github.com/aviralgoel/Snake-2D-LocalMultiPlayer/blob/main/Assets/Game%20Repo%20Images/demo.gif?raw=true">
+<hr>
 </p>
+<p align="center">
+<img width="460" height="300" src="https://github.com/aviralgoel/Snake-2D-LocalMultiPlayer/blob/main/Assets/Game%20Repo%20Images/demo.gif?raw=true">
+<p align="center">
 
 ## Features
 1. Standard Snake Game Rules Apply
