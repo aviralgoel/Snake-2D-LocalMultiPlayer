@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 
@@ -10,6 +11,7 @@ public class GameMenuManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
     public GameObject gameStats;
+    public TextMeshProUGUI winLoseText;
     public Toggle muteToggle;
     public PlayerController controller;
     InputActions inputActions;
@@ -72,7 +74,7 @@ public class GameMenuManager : MonoBehaviour
     public void MuteToggleClicked(bool _t)
     {
        
-        Debug.Log("Menu UI MUTE Button Clicked");
+        //Debug.Log("Menu UI MUTE Button Clicked");
 
         SoundManager.Instance.SetIsMute(muteToggle.isOn);
     }
@@ -80,8 +82,16 @@ public class GameMenuManager : MonoBehaviour
     public void ShowGameOverMenu()
     {
         gameOverMenu.SetActive(true);
-        gameStats.SetActive(false);
+        //gameStats.SetActive(false);
         
+    }
+    public void PlayerLost(string _name)
+    {
+        winLoseText.text = _name + " ate themselves!";
+    }
+    public void PlayerWon(string _name)
+    {
+        winLoseText.text = _name + "ate their opponent!";
     }
     private void OnEnable()
     {
@@ -98,4 +108,5 @@ public class GameMenuManager : MonoBehaviour
     {
         SoundManager.Instance.Play(SoundsNames.ButtonClick);
     }
+
 }

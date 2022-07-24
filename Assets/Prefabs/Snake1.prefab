@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 420887422}
   m_Layer: 0
   m_Name: Snake1
-  m_TagString: Player 1
+  m_TagString: Player 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
     scoreBoostMultiplier: 1
     isDead: 0
     defaultSpeed: 0.06
+    playerID: 2
   _input: {fileID: 420887414}
   stepSize: 1
   snakeBodyPrefab: {fileID: 3744274421036289045, guid: ad6a674395664da49aabf84c5ea53cd3, type: 3}
@@ -165,7 +166,6 @@ MonoBehaviour:
   upSpawnPoint: {fileID: 0}
   downSpawnPoint: {fileID: 0}
   gameMenu: {fileID: 0}
-  winLoseText: {fileID: 0}
   gamePaused: 0
 --- !u!114 &47509095
 MonoBehaviour:

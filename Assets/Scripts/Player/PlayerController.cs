@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     //public TextMeshProUGUI winLoseText;
     private List<Transform> snakeBodySegments = new List<Transform>();
     public bool gamePaused;
+    public float inputTime;
+    private float inputTimeDelta;
     
 
   
@@ -38,7 +40,15 @@ public class PlayerController : MonoBehaviour
             {
                 snakeDirectionVector = _direction;
             }
-            _direction = _input.GetInput(_direction);
+            if(inputTimeDelta > 0)
+            {
+                inputTimeDelta -= Time.deltaTime;
+            }
+            else
+            {
+                _direction = _input.GetInput(_direction);
+                inputTimeDelta = inputTime;
+            }
             if (moveTimeDelta > 0) // how frequently the snake should move
             {
                 moveTimeDelta -= Time.deltaTime;
@@ -91,7 +101,7 @@ public class PlayerController : MonoBehaviour
         snakeBodySegments.Add(transform); // add back the head of snake to the transform list
         SnakeGrow(snake.getInitialSize()); // fatten up snake to some initial size
         snake.ResetScore(); // reset score
-        Invoke("ActivatePlayerCollider", 3f);
+        //Invoke("ActivatePlayerCollider", 3f);
 
     }
     public void SnakeDeGrow(int _numOfSegments)
@@ -116,7 +126,7 @@ public class PlayerController : MonoBehaviour
         snake.IsDead = true;
         gameMenu.ShowGameOverMenu();
         //winLoseText.text = gameObject.transform.name + "Lose";
-        transform.GetComponent<BoxCollider2D>().enabled = false;
+        //transform.GetComponent<BoxCollider2D>().enabled = false;
     }
     private void UpdateSnakeBodyPosition()
     {

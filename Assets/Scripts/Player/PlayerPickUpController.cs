@@ -89,11 +89,13 @@ public class PlayerPickUpController : MonoBehaviour
             SoundManager.Instance.Play(SoundsNames.PositiveCollectiblePickup);
         }
         // if player collides with itself and does not have immunity
-        if (collision.CompareTag(transform.gameObject.tag) && !controller.snake.getIsImmune())
+ /*       if (collision.CompareTag(transform.gameObject.tag) && !controller.snake.getIsImmune())
         {
             SoundManager.Instance.Play(SoundsNames.NegativeCollectiblePickup);
             controller.PlayerDead();
-        }
+            Debug.Log("Snake Collided with itself");
+        }*/
+        
 
 
     }
