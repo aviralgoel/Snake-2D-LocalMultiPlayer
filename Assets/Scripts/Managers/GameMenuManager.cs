@@ -40,6 +40,10 @@ public class GameMenuManager : MonoBehaviour
             PlayButtonClickSound();
             pauseMenu.SetActive(!pauseMenu.activeSelf); // show / hide pause menu depending on its current status
             controller.gamePaused = pauseMenu.activeSelf; // pause or unpause game depending on pause menu hidden or not
+            if (currentSceneName == "MultiPlayerGame")
+            {
+                GetComponent<MultiplayerGameStats>().controller2.gamePaused = pauseMenu.activeSelf;
+            }
         }
         
     }

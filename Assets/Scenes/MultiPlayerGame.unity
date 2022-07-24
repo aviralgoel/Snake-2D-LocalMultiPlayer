@@ -243,10 +243,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snake2
       objectReference: {fileID: 0}
+    - target: {fileID: 2029173768132443469, guid: 28aff1fe1e70d4b4fa2dab0ef444d131, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6645205076210211264, guid: 28aff1fe1e70d4b4fa2dab0ef444d131, type: 3}
       propertyPath: gameMenu
       value: 
       objectReference: {fileID: 922299799}
+    - target: {fileID: 6645205076210211264, guid: 28aff1fe1e70d4b4fa2dab0ef444d131, type: 3}
+      propertyPath: inputTime
+      value: 0.075
+      objectReference: {fileID: 0}
     - target: {fileID: 6645205076210211264, guid: 28aff1fe1e70d4b4fa2dab0ef444d131, type: 3}
       propertyPath: upSpawnPoint
       value: 
