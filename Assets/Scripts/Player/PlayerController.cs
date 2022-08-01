@@ -189,9 +189,4 @@ public class PlayerController : MonoBehaviour
         // new head position will be the intended position (rest body segments will follow the head)
         transform.position = position;
     }
-
-/*    private void ActivatePlayerCollider()
-    {
-        transform.GetComponent<BoxCollider2D>().enabled = true; // enable the collider
-    }*/
 }

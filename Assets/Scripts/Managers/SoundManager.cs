@@ -69,8 +69,8 @@ public class SoundManager : MonoBehaviour
     public void SetIsMute(bool _status)
     {
         isMute = _status; // new state of isMute
-        SFXSource.mute = _status; 
-        backgroundMusicSource.mute = _status; 
+        SFXSource.mute = _status;
+        backgroundMusicSource.mute = _status;
     }
 }
 

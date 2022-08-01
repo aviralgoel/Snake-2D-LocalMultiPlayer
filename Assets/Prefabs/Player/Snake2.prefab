@@ -158,16 +158,15 @@ MonoBehaviour:
     isDead: 0
     defaultSpeed: 0.06
     playerID: 1
-  _input: {fileID: 1694148524}
+  gamePaused: 0
   stepSize: 1
+  inputTime: 0.075
   snakeBodyPrefab: {fileID: 3744274421036289045, guid: d145bfd001999904bb117241eee0d6d4, type: 3}
+  gameMenu: {fileID: 0}
   leftSpawnPoint: {fileID: 0}
   rightSpawnPoint: {fileID: 0}
   upSpawnPoint: {fileID: 0}
   downSpawnPoint: {fileID: 0}
-  gameMenu: {fileID: 0}
-  gamePaused: 0
-  inputTime: 0.075
 --- !u!114 &47509095
 MonoBehaviour:
   m_ObjectHideFlags: 0

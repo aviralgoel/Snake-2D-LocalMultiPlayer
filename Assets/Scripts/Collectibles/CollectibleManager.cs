@@ -1,29 +1,33 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class CollectibleManager : MonoBehaviour
 {
     public List<GameObject> collectibles;
     public GameObject massGainer;
-    
+
     public float minSpawnFrequency;
     public float maxSpawnFrequency;
+
     private void Start()
     {
+        // all collectibles (except mass gainer) spawn based on a random time interval coroutine
         StartCoroutine(CollectibleSpawner());
     }
+
     private void Update()
     {
+        // mass gainer gets spawned instantly when collected
         if (massGainer.GetComponent<Collectible>().isCollected)
         {
             massGainer.GetComponent<Collectible>().ActivateCollectible();
         }
-
     }
-    IEnumerator CollectibleSpawner()
-    {   
-        // every Range(3,6) second second check if an collectible is active or not,
+
+    private IEnumerator CollectibleSpawner()
+    {
+        // every Range(3,6) second check if an collectible is active or not,
         // if it is active deactivate it, else activate it
         while (true)
         {
@@ -34,13 +38,10 @@ public class CollectibleManager : MonoBehaviour
                 temp.ActivateCollectible();
             }
             else // collectible is SetActive(true)
-            {   
-                 temp.DeActivateCollectible();
+            {
+                temp.DeActivateCollectible();
             }
-            yield return new WaitForSeconds(Random.Range(minSpawnFrequency, maxSpawnFrequency));   
+            yield return new WaitForSeconds(Random.Range(minSpawnFrequency, maxSpawnFrequency));
         }
-        
-        
-
     }
 }

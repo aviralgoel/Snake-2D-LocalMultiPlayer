@@ -638,6 +638,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1101819532, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+      propertyPath: m_Name
+      value: RightSpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726836675, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726836675, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1384
+      objectReference: {fileID: 0}
+    - target: {fileID: 474761683137763303, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807620282118620078, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3991097370539406321, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -686,7 +706,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelDesign
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4575329559361635598, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407397310085606363, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7407397310085606363, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+    - {fileID: 1807620282118620078, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+    - {fileID: 474761683137763303, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
+    - {fileID: 4575329559361635598, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 33da5b939841e6a4fa8736238b8e99f3, type: 3}
 --- !u!1001 &4585598505182617985
 PrefabInstance:
