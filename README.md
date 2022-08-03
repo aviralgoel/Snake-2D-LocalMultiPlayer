@@ -7,6 +7,8 @@ A 2D recreation of classic snake game with local multiplayer option and addition
 <img width="460" height="300" src="https://github.com/aviralgoel/Snake-2D-LocalMultiPlayer/blob/main/Assets/Game%20Repo%20Images/demo.gif?raw=true">
 <p align="center">
 
+Play this game on Itch: https://aviralgoel.itch.io/snake-reloaded-multiplayer
+
 ## Features
 1. Standard Snake Game Rules Apply
 2. Collectibles as follows
